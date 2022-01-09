@@ -1,0 +1,89 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Image\Players\Players-Glow\Player1-Blue-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player1-Green-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player1-Red-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player2-Blue-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player2-Green-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player2-Red-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player3-Blue-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player3-Green-Small-Glow.png" />
+    <None Remove="Image\Players\Players-Glow\Player3-Red-Small-Glow.png" />
+    <None Remove="Image\Players\Players\Player1-Blue-Small.png" />
+    <None Remove="Image\Players\Players\Player1-Green-Small.png" />
+    <None Remove="Image\Players\Players\Player1-Red-Small.png" />
+    <None Remove="Image\Players\Players\Player2-Blue-Small.png" />
+    <None Remove="Image\Players\Players\Player2-Green-Small.png" />
+    <None Remove="Image\Players\Players\Player2-Red-Small.png" />
+    <None Remove="Image\Players\Players\Player3-Blue-Small.png" />
+    <None Remove="Image\Players\Players\Player3-Green-Small.png" />
+    <None Remove="Image\Players\Players\Player3-Red-Small.png" />
+    <None Remove="Image\RPS\Paper-Blue.png" />
+    <None Remove="Image\RPS\Paper-Green.png" />
+    <None Remove="Image\RPS\Paper-Mixed-BG.png" />
+    <None Remove="Image\RPS\Paper-Red.png" />
+    <None Remove="Image\RPS\Paper.png" />
+    <None Remove="Image\RPS\Rock-Blue.png" />
+    <None Remove="Image\RPS\Rock-Green.png" />
+    <None Remove="Image\RPS\Rock-Mixed-BG.png" />
+    <None Remove="Image\RPS\Rock-Red.png" />
+    <None Remove="Image\RPS\Rock.png" />
+    <None Remove="Image\RPS\Scissors-Blue.png" />
+    <None Remove="Image\RPS\Scissors-Green.png" />
+    <None Remove="Image\RPS\Scissors-Mixed-BG.png" />
+    <None Remove="Image\RPS\Scissors-Red.png" />
+    <None Remove="Image\RPS\Scissors.png" />
+    <None Remove="Image\Words\RPS-Words-Paper.png" />
+    <None Remove="Image\Words\RPS-Words-Rock.png" />
+    <None Remove="Image\Words\RPS-Words-Scissors.png" />
+    <None Remove="Image\Words\RPS-Words-Shoot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Image\Players\Players-Glow\Player1-Blue-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player1-Green-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player1-Red-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player2-Blue-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player2-Green-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player2-Red-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player3-Blue-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player3-Green-Small-Glow.png" />
+    <Resource Include="Image\Players\Players-Glow\Player3-Red-Small-Glow.png" />
+    <Resource Include="Image\Players\Players\Player1-Blue-Small.png" />
+    <Resource Include="Image\Players\Players\Player1-Green-Small.png" />
+    <Resource Include="Image\Players\Players\Player1-Red-Small.png" />
+    <Resource Include="Image\Players\Players\Player2-Blue-Small.png" />
+    <Resource Include="Image\Players\Players\Player2-Green-Small.png" />
+    <Resource Include="Image\Players\Players\Player2-Red-Small.png" />
+    <Resource Include="Image\Players\Players\Player3-Blue-Small.png" />
+    <Resource Include="Image\Players\Players\Player3-Green-Small.png" />
+    <Resource Include="Image\Players\Players\Player3-Red-Small.png" />
+    <Resource Include="Image\RPS\Paper-Blue.png" />
+    <Resource Include="Image\RPS\Paper-Green.png" />
+    <Resource Include="Image\RPS\Mixed\Paper-Mixed-BG.png" />
+    <Resource Include="Image\RPS\Paper-Red.png" />
+    <Resource Include="Image\RPS\Paper.png" />
+    <Resource Include="Image\RPS\Rock-Blue.png" />
+    <Resource Include="Image\RPS\Rock-Green.png" />
+    <Resource Include="Image\RPS\Mixed\Rock-Mixed-BG.png" />
+    <Resource Include="Image\RPS\Rock-Red.png" />
+    <Resource Include="Image\RPS\Rock.png" />
+    <Resource Include="Image\RPS\Scissors-Blue.png" />
+    <Resource Include="Image\RPS\Scissors-Green.png" />
+    <Resource Include="Image\RPS\Mixed\Scissors-Mixed-BG.png" />
+    <Resource Include="Image\RPS\Scissors-Red.png" />
+    <Resource Include="Image\RPS\Scissors.png" />
+    <Resource Include="Image\Words\RPS-Words-Paper.png" />
+    <Resource Include="Image\Words\RPS-Words-Rock.png" />
+    <Resource Include="Image\Words\RPS-Words-Scissors.png" />
+    <Resource Include="Image\Words\RPS-Words-Shoot.png" />
+  </ItemGroup>
+
+</Project>
