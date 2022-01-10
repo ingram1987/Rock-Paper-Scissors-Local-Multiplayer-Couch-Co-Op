@@ -4,6 +4,8 @@ Project currently housed in Development branch:
 https://github.com/ingram1987/Rock-Paper-Scissors-Local-Multiplayer-Couch-Co-Op/tree/Development
   
 Controls:  
+Space = Start Game  
+  
 Player 1:  
 A = Rock  
 S = Paper  
