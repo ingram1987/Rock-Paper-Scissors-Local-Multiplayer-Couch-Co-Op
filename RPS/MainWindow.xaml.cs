@@ -53,6 +53,8 @@ namespace RPS
         public const string UriPaperMixedBG = "/Image/RPS/Mixed/Paper-Mixed-BG.png";
         public const string UriScissorsMixedBG = "/Image/RPS/Mixed/Scissors-Mixed-BG.png";
 
+        public const string UriPlayer1Blue = "/Image/Players/Players/Player1-Blue-Small.png";
+        public const string UriPlayer2Green = "/Image/Players/Players/Player2-Green-Small.png";
         public string[] UriPlayer1RPSColors = { UriRockBlue, UriPaperBlue, UriScissorsBlue };
         public string[] UriPlayer2RPSColors = { UriRockGreen, UriPaperGreen, UriScissorsGreen };
 
@@ -88,42 +90,36 @@ namespace RPS
                         pOneChoice = rock;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
-                        SystemSounds.Asterisk.Play();
                         break;
                     case Key.S:
                         Player1KeysPressed[e.Key.ToString()] = true;
                         pOneChoice = paper;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
-                        SystemSounds.Asterisk.Play();
                         break;
                     case Key.D:
                         Player1KeysPressed[e.Key.ToString()] = true;
                         pOneChoice = scissors;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
-                        SystemSounds.Asterisk.Play();
                         break;
                     case Key.J:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = rock;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
-                        SystemSounds.Hand.Play();
                         break;
                     case Key.K:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = paper;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
-                        SystemSounds.Hand.Play();
                         break;
                     case Key.L:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = scissors;
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
-                        SystemSounds.Hand.Play();
                         break;
                 }
             }
@@ -219,8 +215,13 @@ namespace RPS
             imgPaper.Source = new BitmapImage(image);
             image = new Uri(UriScissors, UriKind.Relative);
             imgScissors.Source = new BitmapImage(image);
-            
+            image = new Uri(UriPlayer1Blue, UriKind.Relative);
+            imgPlayer1.Source = new BitmapImage(image);
+            image = new Uri(UriPlayer2Green, UriKind.Relative);
+            imgPlayer2.Source = new BitmapImage(image);
 
+            pOneChoice = null;
+            pTwoChoice = null;
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -352,26 +353,32 @@ namespace RPS
                 switch (e.Key)
                 {
                     case Key.A:
+                        pOneChoice = null;
                         DisablePlayerGlow(Key.A.ToString());
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.S:
+                        pOneChoice = null;
                         DisablePlayerGlow(Key.S.ToString());
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.D:
+                        pOneChoice = null;
                         DisablePlayerGlow(Key.D.ToString());
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.J:
+                        pTwoChoice = null;
                         DisablePlayerGlow(Key.J.ToString());
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.K:
+                        pTwoChoice = null;
                         DisablePlayerGlow(Key.K.ToString());
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.L:
+                        pTwoChoice = null;
                         DisablePlayerGlow(Key.L.ToString());
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
