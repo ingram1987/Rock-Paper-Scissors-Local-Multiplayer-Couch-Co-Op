@@ -127,7 +127,15 @@ namespace RPS
                         break;
                 }
             }
+            else
+            {
+                if (e.Key.ToString() == "Space")
+                {
+                    Button_Click(sender, e);
+                }
+            }
         }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
