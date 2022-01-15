@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Media;
 using System.Windows.Media.Effects;
+using System.Diagnostics;
 
 
 namespace RPS
@@ -81,43 +82,49 @@ namespace RPS
         
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
-            if (timesUp != true)
+            if (timesUp != true && !e.IsRepeat)
             {
                 switch (e.Key)
                 {
                     case Key.A:
                         Player1KeysPressed[e.Key.ToString()] = true;
                         pOneChoice = rock;
+                        Debug.WriteLine("A keydown: " + pOneChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
                         break;
                     case Key.S:
                         Player1KeysPressed[e.Key.ToString()] = true;
                         pOneChoice = paper;
+                        Debug.WriteLine("S keydown: " + pOneChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
                         break;
                     case Key.D:
                         Player1KeysPressed[e.Key.ToString()] = true;
                         pOneChoice = scissors;
+                        Debug.WriteLine("D keydown: " + pOneChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(1, e.Key.ToString());
                         break;
                     case Key.J:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = rock;
+                        Debug.WriteLine("J keydown: " + pTwoChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
                         break;
                     case Key.K:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = paper;
+                        Debug.WriteLine("K keydown: " + pTwoChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
                         break;
                     case Key.L:
                         Player2KeysPressed[e.Key.ToString()] = true;
                         pTwoChoice = scissors;
+                        Debug.WriteLine("L keydown: " + pTwoChoice);
                         EnablePlayerGlow(e.Key.ToString());
                         CheckIfImageIsSetForPlayer(2, e.Key.ToString());
                         break;
@@ -140,6 +147,7 @@ namespace RPS
             currentSecondsCount = 0;
             ResetImages();
             timer.Start();
+            
 
         }
 
@@ -147,11 +155,6 @@ namespace RPS
         {
             if (player == 1)
             {
-                //RockImageUri = ((BitmapImage)imgRock.Source).UriSource.ToString();
-                //PaperImageUri = ((BitmapImage)imgPaper.Source).UriSource.ToString();
-                //ScissorsImageUri = ((BitmapImage)imgScissors.Source).UriSource.ToString();
-
-                //Iterate through currently pressed buttons by Player 1
                 foreach (KeyValuePair<string, bool> playerKeyPressed in Player1KeysPressed)
                 {
                     //Reset all but currently pressed button
@@ -160,18 +163,45 @@ namespace RPS
                         Uri imageToReset = null;
                         if (playerKeyPressed.Key == "A")
                         {
-                            imageToReset = new Uri(UriRock, UriKind.Relative);
-                            imgRock.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pTwoChoice == rock)
+                            {
+                                imageToReset = new Uri(UriRockGreen, UriKind.Relative);
+                                imgRock.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriRock, UriKind.Relative);
+                                imgRock.Source = new BitmapImage(imageToReset);
+                                
+                            }
+                            
                         }
                         else if (playerKeyPressed.Key == "S")
                         {
-                            imageToReset = new Uri(UriPaper, UriKind.Relative);
-                            imgPaper.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pTwoChoice == paper)
+                            {
+                                imageToReset = new Uri(UriPaperGreen, UriKind.Relative);
+                                imgPaper.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriPaper, UriKind.Relative);
+                                imgPaper.Source = new BitmapImage(imageToReset);
+                                
+                            }
                         }
                         else if (playerKeyPressed.Key == "D")
                         {
-                            imageToReset = new Uri(UriScissors, UriKind.Relative);
-                            imgScissors.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pTwoChoice == scissors)
+                            {
+                                imageToReset = new Uri(UriScissorsGreen, UriKind.Relative);
+                                imgScissors.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriScissors, UriKind.Relative);
+                                imgScissors.Source = new BitmapImage(imageToReset);
+                            }
                         }
                     }
                 }
@@ -187,18 +217,51 @@ namespace RPS
                         Uri imageToReset = null;
                         if (playerKeyPressed.Key == "J")
                         {
-                            imageToReset = new Uri(UriRock, UriKind.Relative);
-                            imgRock.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pOneChoice == rock)
+                            {
+                                imageToReset = new Uri(UriRockBlue, UriKind.Relative);
+                                imgRock.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriRock, UriKind.Relative);
+                                imgRock.Source = new BitmapImage(imageToReset);
+
+                            }
+                            //imageToReset = new Uri(UriRock, UriKind.Relative);
+                            //imgRock.Source = new BitmapImage(imageToReset);
                         }
                         else if (playerKeyPressed.Key == "K")
                         {
-                            imageToReset = new Uri(UriPaper, UriKind.Relative);
-                            imgPaper.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pOneChoice == paper)
+                            {
+                                imageToReset = new Uri(UriPaperBlue, UriKind.Relative);
+                                imgPaper.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriPaper, UriKind.Relative);
+                                imgPaper.Source = new BitmapImage(imageToReset);
+
+                            }
+                            //imageToReset = new Uri(UriPaper, UriKind.Relative);
+                            //imgPaper.Source = new BitmapImage(imageToReset);
                         }
                         else if (playerKeyPressed.Key == "L")
                         {
-                            imageToReset = new Uri(UriScissors, UriKind.Relative);
-                            imgScissors.Source = new BitmapImage(imageToReset);
+                            if (OtherPlayersSameOptionPressed(player, keyPressed) && pOneChoice == scissors)
+                            {
+                                imageToReset = new Uri(UriScissorsBlue, UriKind.Relative);
+                                imgScissors.Source = new BitmapImage(imageToReset);
+                            }
+                            else
+                            {
+                                imageToReset = new Uri(UriScissors, UriKind.Relative);
+                                imgScissors.Source = new BitmapImage(imageToReset);
+
+                            }
+                            //imageToReset = new Uri(UriScissors, UriKind.Relative);
+                            //imgScissors.Source = new BitmapImage(imageToReset);
                         }
                     }
                 }
@@ -346,6 +409,78 @@ namespace RPS
             }
         }
 
+        private bool OtherPlayersSameOptionPressed(int activePlayer, string activeLetter)
+        {
+            if (activePlayer == 1)
+            {
+                if (activeLetter == "A")
+                {
+                    if (Player2KeysPressed["J"] == true)
+                    {
+                        if (pTwoChoice == rock)
+                        {
+                            return true;
+                        }
+                        
+                    }
+                }
+                else if (activeLetter == "S")
+                {
+                    if (Player2KeysPressed["K"] == true)
+                    {
+                        if (pTwoChoice == paper)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                else if (activeLetter == "D")
+                {
+                    if (Player2KeysPressed["L"] == true)
+                    {
+                        if (pTwoChoice == scissors)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                
+            }
+            else if (activePlayer == 2)
+            {
+                if (activeLetter == "J")
+                {
+                    if (Player1KeysPressed["A"] == true)
+                    {
+                        if (pOneChoice == rock)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                else if (activeLetter == "K")
+                {
+                    if (Player1KeysPressed["S"] == true)
+                    {
+                        if (pOneChoice == paper)
+                        {
+                            return true;
+                        }
+                    }
+                }
+                else if (activeLetter == "L")
+                {
+                    if (Player1KeysPressed["D"] == true)
+                    {
+                        if (pOneChoice == scissors)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         private void OnKeyUpHandler(object sender, KeyEventArgs e)
         {
             if (timesUp != true)
@@ -353,33 +488,119 @@ namespace RPS
                 switch (e.Key)
                 {
                     case Key.A:
-                        pOneChoice = null;
-                        DisablePlayerGlow(Key.A.ToString());
+                        if (pOneChoice == rock)
+                        {
+                            pOneChoice = null;
+                        }
+
+                        if (OtherPlayersSameOptionPressed(1, "A"))
+                        {
+                            if (pTwoChoice == rock)
+                            {
+                                EnablePlayerGlow("J");
+                            }
+
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.A.ToString());
+                        }
+
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.S:
-                        pOneChoice = null;
-                        DisablePlayerGlow(Key.S.ToString());
+                        if (pOneChoice == paper)
+                        {
+                            pOneChoice = null;
+                        }
+
+                        if (OtherPlayersSameOptionPressed(1, "S"))
+                        {
+                            if (pTwoChoice == paper)
+                            {
+                                EnablePlayerGlow("K");
+                            }
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.S.ToString());
+                        }
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.D:
-                        pOneChoice = null;
-                        DisablePlayerGlow(Key.D.ToString());
+                        if (pOneChoice == scissors)
+                        {
+                            pOneChoice = null;
+                        }
+
+                        if (OtherPlayersSameOptionPressed(1, "D"))
+                        {
+                            if (pTwoChoice == scissors)
+                            {
+                                EnablePlayerGlow("L");
+                            }
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.D.ToString());
+                        }
                         Player1KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.J:
-                        pTwoChoice = null;
-                        DisablePlayerGlow(Key.J.ToString());
+                        if (pTwoChoice == rock)
+                        {
+                            pTwoChoice = null;
+                        }
+
+                        if (OtherPlayersSameOptionPressed(2, "J"))
+                        {
+                            if (pOneChoice == rock)
+                            {
+                                EnablePlayerGlow("A");
+                            }
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.J.ToString());
+                        }
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.K:
-                        pTwoChoice = null;
-                        DisablePlayerGlow(Key.K.ToString());
+                        if (pTwoChoice == paper)
+                        {
+                            pTwoChoice = null;
+                        }
+                        
+                        if (OtherPlayersSameOptionPressed(2, "K"))
+                        {
+                            if (pOneChoice == paper)
+                            {
+                                EnablePlayerGlow("S");
+                            }
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.K.ToString());
+                        }
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
                     case Key.L:
-                        pTwoChoice = null;
-                        DisablePlayerGlow(Key.L.ToString());
+                        if (pTwoChoice == scissors)
+                        {
+                            pTwoChoice = null;
+                        }
+                        
+                        if (OtherPlayersSameOptionPressed(2, "L"))
+                        {
+                            if (pOneChoice == scissors)
+                            {
+                                EnablePlayerGlow("D");
+                            }
+                        }
+                        else
+                        {
+                            DisablePlayerGlow(Key.L.ToString());
+                        }
                         Player2KeysPressed[e.Key.ToString()] = false;
                         break;
                 }
