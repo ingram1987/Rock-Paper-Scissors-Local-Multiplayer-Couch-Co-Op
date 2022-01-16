@@ -323,9 +323,13 @@ namespace RPS
                     //Reset all but currently pressed button
                     if (playerKeyPressed.Value == true && playerKeyPressed.Key != keyPressed)
                     {
+                        //If player holds down multiple buttons, checks if other players have
+                        //player's previous (key pressed and held before current one) and sets the glow
+                        //back to the other player, as opposed to reseting image to default.
                         Uri imageToReset = null;
                         if (playerKeyPressed.Key == "A")
                         {
+                            
                             if (OtherPlayersSameOptionPressed(player, keyPressed) && pTwoChoice == rock)
                             {
                                 imageToReset = new Uri(UriRockGreen, UriKind.Relative);
@@ -377,6 +381,9 @@ namespace RPS
                     //Reset all but currently pressed button
                     if (playerKeyPressed.Value == true && playerKeyPressed.Key != keyPressed)
                     {
+                        //If player holds down multiple buttons, checks if other players have
+                        //player's previous (key pressed and held before current one) and sets the glow
+                        //back to the other player, as opposed to reseting image to default.
                         Uri imageToReset = null;
                         if (playerKeyPressed.Key == "J")
                         {
@@ -391,8 +398,6 @@ namespace RPS
                                 imgRock.Source = new BitmapImage(imageToReset);
 
                             }
-                            //imageToReset = new Uri(UriRock, UriKind.Relative);
-                            //imgRock.Source = new BitmapImage(imageToReset);
                         }
                         else if (playerKeyPressed.Key == "K")
                         {
@@ -407,8 +412,6 @@ namespace RPS
                                 imgPaper.Source = new BitmapImage(imageToReset);
 
                             }
-                            //imageToReset = new Uri(UriPaper, UriKind.Relative);
-                            //imgPaper.Source = new BitmapImage(imageToReset);
                         }
                         else if (playerKeyPressed.Key == "L")
                         {
@@ -423,8 +426,6 @@ namespace RPS
                                 imgScissors.Source = new BitmapImage(imageToReset);
 
                             }
-                            //imageToReset = new Uri(UriScissors, UriKind.Relative);
-                            //imgScissors.Source = new BitmapImage(imageToReset);
                         }
                     }
                 }
@@ -500,6 +501,7 @@ namespace RPS
         }
         private void DisablePlayerGlow(string keyPressed)
         {
+            //Disables glow of Player# symbol at bottom of window
             if (keyPressed == "A" || keyPressed == "S" || keyPressed == "D")
             {
                 Uri player1NoGlow = new Uri("/Image/Players/Players/Player1-Blue-Small.png", UriKind.Relative);
@@ -544,12 +546,14 @@ namespace RPS
 
         private bool OtherPlayersSameOptionPressed(int activePlayer, string activeLetter)
         {
+            //Checks if opposing players have they same Key and primary choice selected also
             if (activePlayer == 1)
             {
                 if (activeLetter == "A")
                 {
                     if (Player2KeysPressed["J"] == true)
                     {
+                        //Checks if player2 has J pressed down currently AND has J/Rock selected as choice
                         if (pTwoChoice == rock)
                         {
                             return true;
@@ -577,7 +581,6 @@ namespace RPS
                         }
                     }
                 }
-                
             }
             else if (activePlayer == 2)
             {
