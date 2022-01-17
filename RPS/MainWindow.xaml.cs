@@ -64,7 +64,8 @@ namespace RPS
         Uri Rps1Glow = null;
         Uri Rps2Glow = null;
         DropShadowEffect newDropShadowEffect = new DropShadowEffect();
-        
+        Winner winner = new Winner();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -117,7 +118,7 @@ namespace RPS
             //Display 'SHOOT!' on the screen. Determine Winner
             else if (currentSecondsCount == 3)
             {
-                Winner winner = new Winner();
+                
                 Uri imgShoot = new Uri("/Image/Words/RPS-Words-Shoot.png", UriKind.Relative);
                 imgRPSCounter.Source = new BitmapImage(imgShoot);
                 timesUp = true;
@@ -449,6 +450,13 @@ namespace RPS
             //Reset Player Choices
             pOneChoice = null;
             pTwoChoice = null;
+
+            if (Winner.gameOver == true)
+            {
+                player1Progress.Value = 0;
+                player2Progress.Value = 0;
+                Winner.gameOver = false;
+            }
         }
 
 

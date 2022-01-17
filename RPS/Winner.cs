@@ -9,6 +9,11 @@ namespace RPS
     class Winner
     {
         string imageSource = "";
+        public static int numberWinsForGameWin = 5;
+        public static bool gameOver = false;
+        private int player1WinsTotal { get; set; }
+        private int player2WinsTotal { get; set; }
+        
         public void DetermineWinner(MainWindow mainWind, string p1, string p2)
         {
             if (p1 == MainWindow.rock)
@@ -68,10 +73,29 @@ namespace RPS
             else if (winningPlayer == 1)
             {
                 mainWind.lblWinner.Content = $"<--- Player {winningPlayer} wins!";
+                player1WinsTotal += 1;
+                mainWind.player1Progress.Value = player1WinsTotal;
             }
             else if (winningPlayer == 2)
             {
                 mainWind.lblWinner.Content = $"Player {winningPlayer} wins! --->";
+                player2WinsTotal += 1;
+                mainWind.player2Progress.Value = player2WinsTotal;
+            }
+
+            if (player1WinsTotal == numberWinsForGameWin)
+            {
+                mainWind.lblWinner.Content = $"<--- Player 1 wins!\r\nGAME WIN";
+                gameOver = true;
+                player1WinsTotal = 0;
+                player2WinsTotal = 0;
+            }
+            if (player2WinsTotal == numberWinsForGameWin)
+            {
+                mainWind.lblWinner.Content = $"<--- Player 2 wins!\r\nGAME WIN";
+                gameOver = true;
+                player1WinsTotal = 0;
+                player2WinsTotal = 0;
             }
 
             //If tie
